@@ -5,13 +5,14 @@ import sys
 import os.path
 from PIL import Image
 
-DEFAULT_WIDTH = 400;
+DEFAULT_WIDTH = 100;
 
 # color辞書（とりあえず決め打ち）
 COLORS = {
-    "?": (255, 255, 255),   # 不明な文字
-    "*": (0, 0, 0),         # 終端文字
-    "%": (255,235,59),
+    "??": (255, 255, 255),   # 不明な文字
+    "<" : (0, 0, 0),         # 終端文字
+    ">" : (69,90,100),       # ファイル改行
+    "%" : (255,235,59),
     # 数字
     "0": (244,67,54),
     "1": (156,39,176),
@@ -49,7 +50,34 @@ COLORS = {
     "w": (124,77,255),
     "x": (83,109,254),
     "y": (64,196,255),
-    "z": (255,171,64)
+    "z": (255,171,64),
+    # A-Z
+    "A": (183,28,28),
+    "B": (136,14,79),
+    "C": (74,20,140),
+    "D": (49,27,146),
+    "E": (13,71,161),
+    "F": (1,87,155),
+    "G": (0,96,100),
+    "H": (0,77,64),
+    "I": (27,94,32),
+    "J": (51,105,30),
+    "K": (130,119,23),
+    "L": (245,127,23),
+    "M": (255,111,0),
+    "N": (230,81,0),
+    "O": (191,54,12),
+    "P": (62,39,35),
+    "Q": (38,50,56),
+    "R": (255,23,68),
+    "S": (245,0,87),
+    "T": (213,0,249),
+    "U": (101,31,255),
+    "V": (61,90,254),
+    "W": (41,121,255),
+    "X": (0,229,255),
+    "Y": (0,230,118),
+    "Z": (255,145,0)
 };
 
 def generateImage(colors):
@@ -86,24 +114,19 @@ def readChar(filePath):
                     if COLORS.has_key(c) is True:
                         cColor = COLORS[c];
                     else:
-                        cColor = COLORS['?'];
+                        cColor = COLORS['??'];
                     colors.append(cColor);
 
         # 次の行を見る
+        colors.append(COLORS['>']); #ファイル改行
         line = f.readline();
     f.close;
-    colors.append(COLORS['*']); #終端
+    colors.append(COLORS['<']); #終端
 
     # 総文字数から画像サイズを決定する
     charNums = len(colors);
     if charNums > 0:
         generateImage(colors);
-
-
-# 読み込んだ文字からピクセルデータを決定する
-def determinePxColor(char):
-    pass;
-
 
 if __name__ == '__main__':
     print 'Hello!';
