@@ -89,6 +89,27 @@ def determineFilename(filePath):
     filename = paths[len(paths) - 1];
     return filename.split('.')[0];
 
+# 画像の基本情報を取得して返す
+def get_img_info(path):
+    img = Image.open(path)
+    imgInfo = {
+      "size_h": img.size[1],
+      "size_w": img.size[0],
+      "mode": img.mode,
+      "format": img.format
+    }
+    return imgInfo
+
+# 画像の色情報を二次元配列に保持する
+def collect_px_rgb(path):
+    img = Image.open(path)
+    rgb = list(img.getdata())
+    return rgb
+
+# RGB情報を受け取って文字を決定する
+def findChar(color):
+    pass
+
 # Pixelを1つずつ読み込む
 def readPx(filepath):
     # 文字データを保持する配列
@@ -100,7 +121,22 @@ def readPx(filepath):
 
     filename = determineFilename(filePath);
     txtfilename = filename + '.txt';
-    print txtfilename;
+
+    # 画像の横幅が一行あたりの文字数と一致する
+    chars_per_line = get_img_info(filepath)['size_w'];
+    rgb_data = collect_px_rgb(filepath);
+
+    txt = '';
+    # 画像の高さを一段ずつ見ていく
+    step = 0;
+    for i in range(0, chars_per_line):
+        y = step * chars_per_line;
+
+        color = rgbdata[y + i];
+    #print collect_px_rgb(filepath);
+
+
+
 
 
 if __name__ == '__main__':
