@@ -7,6 +7,9 @@ from PIL import Image
 
 DEFAULT_WIDTH = 100;
 
+# バージョンは一文字で表す
+VERSION = '0';
+
 # color辞書（とりあえず決め打ち）
 COLORS = {
     "??": (255, 255, 255),   # 不明な文字
@@ -97,6 +100,9 @@ def generateImage(colors):
 def readChar(filePath):
     # カラーデータを保持する配列
     colors = [];
+
+    # colorsの最初の要素は、バージョン
+    colors.append(COLORS[VERSION]);
 
     # 有効なパスかどうか判定
     if os.path.isfile(filePath) is not True:
