@@ -83,7 +83,7 @@ COLORS = {
     "Z": (255,145,0)
 };
 
-def generateImage(colors):
+def generateImage(colors, pngfilename):
     height = len(colors) / DEFAULT_WIDTH + 1;
     width  = DEFAULT_WIDTH;
     canvas = Image.new("RGB", (width, height), (0,0,0));
@@ -93,8 +93,14 @@ def generateImage(colors):
             if width * y + x < len(colors):
                 canvas.putpixel((x,y), colors[width * y + x]);
 
-    canvas.save("px/test-0.png");
+    canvas.save("px/" + pngfilename);
 
+def determineFilename(filePath):
+    # ファイルパスからファイル名を得る
+    # 拡張子は含まない
+    paths = filePath.split('/');
+    filename = paths[len(paths) - 1];
+    return filename.split('.')[0];
 
 # テキストファイルを一文字ずつ読み込む
 def readChar(filePath):
@@ -107,6 +113,9 @@ def readChar(filePath):
     # 有効なパスかどうか判定
     if os.path.isfile(filePath) is not True:
         return;
+
+    filename = determineFilename(filePath);
+    pngfilename = filename + '.png';
 
     # 一行ずつ読み取り、カラーを決定して保持する
     f = open(filePath);
@@ -132,7 +141,7 @@ def readChar(filePath):
     # 総文字数から画像サイズを決定する
     charNums = len(colors);
     if charNums > 0:
-        generateImage(colors);
+        generateImage(colors, pngfilename);
 
 if __name__ == '__main__':
     print 'Hello!';
