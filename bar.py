@@ -108,12 +108,15 @@ def collect_px_rgb(path):
 
 # RGB情報を受け取って文字を決定する
 def findChar(color):
-    pass
+    for key, value in COLORS.items():
+        if color[0] == value[0] and color[1] == value[1] and color[2] == value[2]:
+            return key;
+    return '?'
 
 # Pixelを1つずつ読み込む
 def readPx(filepath):
     # 文字データを保持する配列
-    chars = [];
+    chars = [''];
 
     # 有効なパスかどうか判定
     if os.path.isfile(filepath) is not True:
@@ -129,15 +132,24 @@ def readPx(filepath):
     txt = '';
     # 画像の高さを一段ずつ見ていく
     step = 0;
-    for i in range(0, chars_per_line):
-        y = step * chars_per_line;
+    i = 0;
+    char ='';
+    while char != '\n':      # 終端文字ならば終了
+        color = rgb_data[i];
+        char = findChar(color);
 
-        color = rgbdata[y + i];
-    #print collect_px_rgb(filepath);
+        if char != '>':      # 改行ならばstepを進める
+            # 先頭はバージョン情報なので不要
+            if i == 0: char = '';
+            # 終端文字に変換
+            if char == '<': char = '\n';
+            chars[step] = chars[step] + char;
+        else:
+            chars.append('');
+            step += 1;
+        i += 1;
 
-
-
-
+    print len(chars);
 
 if __name__ == '__main__':
     print 'Hello!';
