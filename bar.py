@@ -142,14 +142,23 @@ def readPx(filepath):
             # 先頭はバージョン情報なので不要
             if i == 0: char = '';
             # 終端文字に変換
-            if char == '<': char = '\n';
-            chars[step] = chars[step] + char;
+            if char == '<':
+                char = '\n';
+            else:
+                chars[step] = chars[step] + char;
         else:
+            chars[step] = chars[step] + '\n';
             chars.append('');
             step += 1;
         i += 1;
 
-    print len(chars);
+    generateTxt(chars, txtfilename);
+
+# 結果をテキストファイルに出力する
+def generateTxt(strs, txtfilename):
+    f = open('char/' + txtfilename, 'w');
+    f.writelines(strs);
+    f.close();
 
 if __name__ == '__main__':
     print 'Hello!';
