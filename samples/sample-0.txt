@@ -1,0 +1,26 @@
+\documentclass[11pt,a4j]{jarticle}
+\usepackage{listings,jlisting}
+\usepackage{fancyhdr}
+\usepackage[dvipdfmx]{graphicx, color}
+\usepackage{ascmac}
+\usepackage{amsmath}
+
+\pagestyle{fancy}
+\rhead{\thepage}
+\cfoot{}
+\lstset{
+  language=c,
+  basicstyle=\ttfamily\small,
+  commentstyle=\textit,
+  classoffset=1,
+  keywordstyle=\bfseries,
+  frame=tb,
+  framesep=5pt,
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny,
+  captionpos=b,
+  stepnumber=1,
+  tabsize=2,
+  numberbychapter=false
+}
