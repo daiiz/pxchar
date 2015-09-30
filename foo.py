@@ -156,11 +156,8 @@ def readChar(filePath):
         generateImage(colors, pngfilename);
 
 if __name__ == '__main__':
-    print 'Hello!';
     # 引数からテキストファイルのパスを得る
     argv = sys.argv;
     if len(argv) == 2:
         filePath = argv[1];
         readChar(filePath);
-
-    print 'Done!';
