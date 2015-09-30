@@ -1,0 +1,15 @@
+#!/bin/sh
+
+#!/bin/sh
+
+# $1: 画像ファイルのパス
+
+if [ $# -eq 1 ]; then
+    # ディレクトリ char/tmp/ に翻訳する
+    filename=$(node helper/getFileName $1)
+    python bar.py px/${filename}.png
+    # decodeURIComponentする
+    node helper/decode.js char/tmp/${filename}.txt
+
+    echo '> char/'${filename}'.txt'
+fi

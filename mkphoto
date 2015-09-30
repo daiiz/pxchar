@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# $1: テキストファイルのパス
+
+if [ $# -eq 1 ]; then
+    # encodeURIComponentする
+    node helper/encode.js $1
+    # ディレクトリ px/ に画像を生成する
+    filename=$(node helper/getFileName $1)
+    python foo.py helper/tmp/${filename}.txt
+    echo '> px/'${filename}'.png'
+fi
