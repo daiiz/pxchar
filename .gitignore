@@ -1,2 +1,6 @@
 .DS_Store
 test-*
+char/tmp/sample-*
+char/sample-*
+helper/tmp/sample-*
+px/sample-*
