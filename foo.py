@@ -5,7 +5,7 @@ import sys
 import os.path
 from PIL import Image
 
-DEFAULT_WIDTH = 100;
+DEFAULT_WIDTH = 200;
 
 # バージョンは一文字で表す
 VERSION = '0';
