@@ -168,7 +168,7 @@ def readPx(filepath):
 
 # 結果をテキストファイルに出力する
 def generateTxt(strs, txtfilename):
-    f = open('char/' + txtfilename, 'w');
+    f = open('char/tmp/' + txtfilename, 'w');
     f.writelines(strs);
     f.close();
 
